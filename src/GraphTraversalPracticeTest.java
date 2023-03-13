@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GraphTraversalPracticeTest {

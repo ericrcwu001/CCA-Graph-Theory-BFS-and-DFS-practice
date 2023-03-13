@@ -1,59 +1,53 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class GraphTraversal {
 
     public static int[] bfs(int[][] graph, int start) {
-        // Create a new queue.
+        Queue<Integer> q = new LinkedList<Integer>();
+        boolean[] visited = new boolean[graph.length];
+        int[] trace = new int[graph.length];
+        q.add(start);
+        int i = 0;
 
-        // Create an array that will record whether we have visited each node.
-
-        // Add the starting node to the queue.
-
-        // While our queue is not empty ...
-
-        // Poll the first node from the queue.
-
-        // Mark this node as visited.
-
-        // Print the node - not fundamental to our algorithm - just so we can see the path that our algorithm takes.
-
-        // Get the neighbours of this node.
-
-        // For each neighbouring node ...
-
-        // Obtain a reference to the neighbour node.
-
-        // If the neighbour node has not yet been visited ...
-
-        // Mark the neighbour node as visited
-
-        // Add the neighbour node to the queue
-
-        return null;
+        while(!q.isEmpty()) {
+            int temp = q.poll();
+            if (visited[temp]) continue;
+            trace[i] = temp;
+            i++;
+            visited[temp] = true;
+            for (int j: graph[temp]) {
+                if (!visited[j]) {
+                    q.add(j);
+                }
+            }
+        }
+        return trace;
     }
 
     public static int[] dfs(int[][] graph, int start) {
-        // Create a new stack.
+        Stack<Integer> s = new Stack<Integer>();
+        boolean[] visited = new boolean[graph.length];
+        int[] trace = new int[graph.length];
+        s.push(start);
+        int i = 0;
 
-        // Create an array that will record whether we have visited each node.
+        while(!s.empty()) {
+            int temp = s.pop();
+            if (visited[temp]) continue;
+            trace[i] = temp;
+            i++;
+            visited[temp] = true;
+            for (int j = graph[temp].length-1; j >= 0; --j) {
+                int temp2 = graph[temp][j];
+                if (!visited[temp2]) {
+                    s.push(temp2);
+                }
+            }
+        }
 
-        // Push the starting node onto the stack.
-
-        // While our stack is not empty ...
-
-        // Pop the top node from the stack.
-
-        // Mark this node as visited.
-
-        // Print the node - not fundamental to our algorithm - just so we can see the path that our algorithm takes.
-
-        // Get the neighbours of this node.
-
-        // For each neighbouring node ...
-
-        // Obtain a reference to the neighbour node.
-
-        // If it has not yet been visited, mark it as visited and push it onto the stack.
-
-        return null;
+        return trace;
     }
 
 }
